@@ -1,4 +1,4 @@
-* Using KoolDots (v2.3.22)
+# Using KoolDots (v2.3.22)
 
 To change Caps Lock to CTRL:
 1. Hit `SHIFT+SUPER+E`
