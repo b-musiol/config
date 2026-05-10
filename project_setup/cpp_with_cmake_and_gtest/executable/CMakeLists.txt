@@ -8,8 +8,9 @@ add_library(<project_name>_lib
   src/<path/to.cpp>
 )
 add_executable(<project_name> src/main.cpp)
+target_link_libraries(<project_name> <project_name>_lib)
 
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(FetchContent)
