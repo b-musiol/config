@@ -7,6 +7,7 @@ add_library(<project_name>
   src/<path/to.cpp>
   src/<path/to.cpp>
 )
+target_compile_features(<project_name> PUBLIC cxx_std_20)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -23,6 +24,7 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(RunTests test/<path/to/test.cpp>)
 target_link_libraries(RunTests <project_name> GTest::gtest_main)
+target_compile_features(RunTests PUBLIC cxx_std_20)
 
 include(GoogleTest)
 gtest_discover_tests(RunTests)
