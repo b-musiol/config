@@ -1,0 +1,21 @@
+Hyprland allows for multiple types of layouts
+
+# Dwindle Layout
+
+This layout keeps halving the window size of the active window to spawn the new window.
+
+The Dwindle Layout is good for monitors that don't have a lot of windows, like vertical monitors.
+
+# Master Layout
+
+This layout allows for a large master window and then tiles the other windows around it.
+
+To create a stable master layout with the master window in the center that stays "shrunk" even with no other windows available (useful for ultrawide displays like 32:9), you can use the following in your .config:
+
+```
+master {
+  orientation = center
+  always_keep_position = true
+  slave_count_for_center_master = 0
+}
+```
