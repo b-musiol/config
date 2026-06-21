@@ -21,7 +21,7 @@ def head_comment(header: bool, name: str, description: str, author: str, email: 
  * {name}{f" - Header" if header else ""}
  * {description}
  *
- * Author: {author} {email}
+ * Author: {author} ({email})
  *
  * See LICENSE
  */
