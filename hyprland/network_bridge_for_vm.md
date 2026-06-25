@@ -18,6 +18,8 @@ Finally connect the real ethernet port to the bridge
 
 ```
 # ip link set eno1 master bri1
+# ip link set bri1 up
 ```
 
 Now you can pass the bridge device `bri1` to your VM.
+
