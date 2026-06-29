@@ -20,3 +20,10 @@ If all you see are blocks, you have no proper fonts. You need a nerd-font. Here 
 
 Relaunch hyprland afterwards to see text rendered.
 
+## Accompanying Applications
+
+Hyprland "needs" additional packages to run. There are usually choices for each. Here is my current setup.
+
+```
+# pacman -S hyprpolkitagent awww dunst rofi thunar pipewire wireplumber xdg-desktop-portal-hyprland pavucontrol nwg-bar playerctl hyprlock wl-clipboard ly quickshell firefox
+```
