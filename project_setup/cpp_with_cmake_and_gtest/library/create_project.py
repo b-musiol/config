@@ -176,6 +176,9 @@ FetchContent_MakeAvailable(googletest)
 add_executable(RunTests_{project_name} tests/{project_name}_tests.cpp)
 target_link_libraries(RunTests_{project_name} {project_name} GTest::gtest_main)
 target_compile_features(RunTests_{project_name} PUBLIC cxx_std_{cpp_standard})
+target_compile_definitions(RunTests_{project_name} PRIVATE
+    TEST_DATA_DIR="${CMAKE_CURRENT_SOURCE_DIR}/tests"
+)
 
 include(GoogleTest)
 enable_testing()
