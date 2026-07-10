@@ -357,6 +357,34 @@ AllowShortFunctionsOnASingleLine: true
 AllowShortLambdasOnASingleLine: true
 """
 
+text_clang_format_fish = """
+#!/usr/bin/env fish
+
+if test (count $argv) -eq 0
+    echo "Usage: "(status filename)" <directory> [directory ...]"
+    exit 1
+end
+
+for dir in $argv
+    if not test -d "$dir"
+        echo "Warning: '$dir' is not a directory, skipping."
+        continue
+    end
+
+    find "$dir" -type f \( -name '*.cpp' -o -name '*.hpp' \) | while read -l file
+        echo "Formatting $file"
+        clang-format -i "$file"
+    end
+end
+"""
+
+text_clang_format_this = """
+#!/usr/bin/env fish
+
+./clangformat_fish.fish src include include_private tests
+"""
+
+
 if __name__ == "__main__":
     project_name = input(
         "What would you like to call your project?\nIf you use whitespaces, they are converted to underscores (_).\nI recommend only using alphanumeric characters and starting with a letter.\nThe name will also be used as a folder name.\nGood names are simple.\nEnter name here: "
@@ -472,6 +500,12 @@ if __name__ == "__main__":
 
     with open(cwd / ".clang-format", "w") as clangformatfile:
         clangformatfile.write(text_clang_format_file)
+
+    with open(cwd / "clangformat_fish.fish", "w") as clangformat_fish:
+        clangformatfile.write(text_clang_format_fish)
+
+    with open(cwd / "clangformat_this.fish", "w") as clangformat_this:
+        clangformatfile.write(text_clang_format_this)
 
     print(
         "You did it! Now just run `git init`, delete this python file, and you're good to go."
