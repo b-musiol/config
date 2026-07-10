@@ -177,7 +177,7 @@ add_executable(RunTests_{project_name} tests/{project_name}_tests.cpp)
 target_link_libraries(RunTests_{project_name} {project_name} GTest::gtest_main)
 target_compile_features(RunTests_{project_name} PUBLIC cxx_std_{cpp_standard})
 target_compile_definitions(RunTests_{project_name} PRIVATE
-    TEST_DATA_DIR="${CMAKE_CURRENT_SOURCE_DIR}/tests"
+    TEST_DATA_DIR="${{CMAKE_CURRENT_SOURCE_DIR}}/tests"
 )
 
 include(GoogleTest)
@@ -502,10 +502,10 @@ if __name__ == "__main__":
         clangformatfile.write(text_clang_format_file)
 
     with open(cwd / "clangformat_fish.fish", "w") as clangformat_fish:
-        clangformatfile.write(text_clang_format_fish)
+        clangformat_fish.write(text_clang_format_fish)
 
     with open(cwd / "clangformat_this.fish", "w") as clangformat_this:
-        clangformatfile.write(text_clang_format_this)
+        clangformat_this.write(text_clang_format_this)
 
     print(
         "You did it! Now just run `git init`, delete this python file, and you're good to go."
