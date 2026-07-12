@@ -58,7 +58,7 @@ local menu        = "hyprlauncher"
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function () 
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme \"Ant-Bloody\"")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme \"Material-Black-Carmine-strong\"")
   hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme \"prefer-dark\"")
   hl.exec_cmd("gsettings set org.gnome.desktop.interface icon-theme \"char-white\"")
   hl.exec_cmd("noctalia --daemon")
