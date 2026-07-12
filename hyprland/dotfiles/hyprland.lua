@@ -1,3 +1,15 @@
+-- This is an example Hyprland Lua config file.
+-- Refer to the wiki for more information.
+-- https://wiki.hypr.land/Configuring/Start/
+
+-- Please note not all available settings / options are set here.
+-- For a full list, see the wiki
+
+-- You can (and should!!) split this configuration into multiple files
+-- Create your files separately and then require them like this:
+-- require("myColors")
+
+local full_timestamp_code = "%Y-%m-%d_%H%M%S.%N"
 
 ------------------
 ---- MONITORS ----
@@ -46,8 +58,9 @@ local menu        = "hyprlauncher"
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function () 
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme \"Breeze-Dark\"")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme \"Ant-Bloody\"")
   hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme \"prefer-dark\"")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface icon-theme \"char-white\"")
   hl.exec_cmd("noctalia --daemon")
 end)
 
@@ -285,6 +298,9 @@ hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
+
+hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("grim -g \"$(slurp)\" ~/Pictures/$(date +" .. full_timestamp_code ..").png"))
+hl.bind(mainMod .. " + CTRL + Print", hl.dsp.exec_cmd("grim ~/Pictures/$(date +" .. full_timestamp_code ..").png"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
