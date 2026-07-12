@@ -295,7 +295,9 @@ hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher")
 hl.bind(mainMod .. " + CTRL + D", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center"))
 hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("noctalia msg panel-close"))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("noctalia msg session lock"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
+hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.exec_cmd(terminal .. " -e btop"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
