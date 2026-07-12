@@ -301,6 +301,8 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.exec_cmd(terminal .. " -e btop"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
+hl.bind(mainMod .. " + CTRL + W", hl.dsp.exec_cmd("noctalia msg panel-toggle noctalia/wallhaven:browser"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("noctalia msg panel-toggle wallpaper"))
 
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("grim -g \"$(slurp)\" ~/Pictures/$(date +" .. full_timestamp_code ..").png"))
 hl.bind(mainMod .. " + CTRL + Print", hl.dsp.exec_cmd("grim ~/Pictures/$(date +" .. full_timestamp_code ..").png"))
