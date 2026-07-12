@@ -324,6 +324,14 @@ for i = 1, 8 do
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
     hl.bind(mainMod .. " + CTRL + " .. key,     hl.dsp.window.move({ workspace = i }))
 end
+hl.bind(mainMod .. " + ALT + left",  hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + ALT + right", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + CTRL + ALT + left",  hl.dsp.window.move({ workspace = "e-1" }))
+hl.bind(mainMod .. " + CTRL + ALT + right", hl.dsp.window.move({ workspace = "e+1" }))
+hl.bind(mainMod .. " + SHIFT + ALT + left",  hl.dsp.focus({ workspace = "r-1" }))
+hl.bind(mainMod .. " + SHIFT + ALT + right", hl.dsp.focus({ workspace = "r+1" }))
+hl.bind(mainMod .. " + SHIFT + CTRL + ALT + left",  hl.dsp.window.move({ workspace = "r-1" }))
+hl.bind(mainMod .. " + SHIFT + CTRL + ALT + right", hl.dsp.window.move({ workspace = "r+1" }))
 
 -- -- Example special workspace (scratchpad)
 -- hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
@@ -407,8 +415,8 @@ hl.window_rule({
 })
 
 for i = 1, 4 do
-    hl.workspace_rule({workspace = i, monitor=wide_monitor, layout="master"})
+    hl.workspace_rule({workspace = i, monitor=wide_monitor, layout="master", persistent=true})
 end
 for i = 5, 8 do
-    hl.workspace_rule({workspace = i, monitor=side_monitor, layout="dwindle"})
+    hl.workspace_rule({workspace = i, monitor=side_monitor, layout="dwindle", persistent=true})
 end
