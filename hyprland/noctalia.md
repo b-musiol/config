@@ -2,16 +2,17 @@ Noctalia is great
 
 # V5
 
-Get yay first. Noctalia is only on the AUR (or on git). ALWAYS CHECK THE DIFFS!
+Get yay or paru first. Noctalia is only on the AUR (or on git). ALWAYS CHECK THE DIFFS!
 
 `yay -S noctalia-git`
+`paru -S noctalia-git`
 
 Then in `~/.config/hypr/hyprland.lua`
 
 ```
 hl.on("hyprland.start", function()
   -- there is probably stuff here, so append
-  hl.exec_cmd("noctalia")
+  hl.exec_cmd("noctalia --daemon")
 end)
 ```
 
