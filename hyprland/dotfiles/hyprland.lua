@@ -72,7 +72,10 @@ end)
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
 hl.env("XCURSOR_SIZE", "64")
-hl.env("HYPRCURSOR_SIZE", "64")
+hl.env("XCURSOR_THEME", "Adwaita")
+hl.env("HYPRCURSOR_SIZE", "80")
+hl.env("HYPRCURSOR_THEME", "Nordzy-hyprcursors-dash")
+hl.env("HYPRCURSOR_THEME_DIRS", "~/.local/share/icons/")
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 hl.env("EDITOR", "nano")
 hl.env("Search_Engine", "https://www.google.com/search?q={}")
@@ -272,8 +275,8 @@ hl.gesture({
 -- Example per-device config
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
 hl.device({
-    name        = "epic-mouse-v1",
-    sensitivity = -0.5,
+    name        = "lift-mouse",
+    sensitivity = -0.7,
 })
 
 
