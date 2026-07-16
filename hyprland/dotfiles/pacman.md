@@ -1,3 +1,3 @@
-`sudo pacman -Sy 7zip btop bzip2 cifs-utils clang cmake cmatrix vscode curl discord emacs fastfetch feh firefox fish gcc gdb gimp git grim gvfs-smb gzip hyprland keepassxc kitty lm_sensors localsend lutris ly mc meld mesa nwg-look obs-studio paru pipewire wireplumber polkit protonplus python qbittorrent slurp sqlitebrowser steam ttf-noto-nerd ufw vlc wayland wl-clipboard xpadneo-dkms`
+`sudo pacman -Sy 7zip btop bzip2 cifs-utils clang cmake cmatrix vscode curl discord emacs fastfetch feh firefox fish gcc gdb gimp git grim gvfs-smb gzip hyprland keepassxc kitty lm_sensors localsend lutris ly mc meld mesa nwg-look obs-studio paru pipewire wireplumber polkit protonplus python qbittorrent slurp sqlitebrowser steam ttf-noto-nerd ufw vlc wayland wl-clipboard xpadneo-dkms qt5-wayland qt6-wayland`
 
 `paru -S noctalia-git`

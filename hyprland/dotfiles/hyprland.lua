@@ -76,7 +76,8 @@ hl.env("XCURSOR_THEME", "Adwaita")
 hl.env("HYPRCURSOR_SIZE", "80")
 hl.env("HYPRCURSOR_THEME", "Nordzy-hyprcursors-dash")
 hl.env("HYPRCURSOR_THEME_DIRS", "~/.local/share/icons/")
-hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
+hl.env("QT_QPA_PLATFORM", "wayland")
+hl.env("QT_QPA_PLATFORMTHEME", "hyprqt6engine")
 hl.env("EDITOR", "nano")
 hl.env("Search_Engine", "https://www.google.com/search?q={}")
 
@@ -322,7 +323,7 @@ hl.bind(mainMod .. " + CTRL + down",  hl.dsp.window.swap({ direction = "down" })
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
-for i = 1, 8 do
+for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
     hl.bind(mainMod .. " + CTRL + " .. key,     hl.dsp.window.move({ workspace = i }))
@@ -422,4 +423,7 @@ for i = 1, 4 do
 end
 for i = 5, 8 do
     hl.workspace_rule({workspace = i, monitor=side_monitor, layout="dwindle", persistent=true})
+end
+for i = 9, 10 do
+    hl.workspace_rule({workspace = i, monitor=wide_monitor, layout="dwindle", persistent=true})
 end
