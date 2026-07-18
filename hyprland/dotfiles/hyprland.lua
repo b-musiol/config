@@ -215,7 +215,7 @@ hl.config({
         orientation = "center",
         always_keep_position = true,
         slave_count_for_center_master = 0,
-        new_status = "slave",
+        new_status = "inherit",
     },
 })
 
@@ -307,6 +307,8 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind(mainMod .. " + CTRL + W", hl.dsp.exec_cmd("noctalia msg panel-toggle noctalia/wallhaven:browser"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("noctalia msg panel-toggle wallpaper"))
+
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({action = "toggle"}))
 
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("grim -g \"$(slurp)\" ~/Pictures/$(date +" .. full_timestamp_code ..").png"))
 hl.bind(mainMod .. " + CTRL + Print", hl.dsp.exec_cmd("grim ~/Pictures/$(date +" .. full_timestamp_code ..").png"))
