@@ -8,8 +8,8 @@ and make sure it contains
 
 ```
 CompileFlags:
-  Add:
-    - --query-driver=C:/Program Files/LLVM/bin/clang++.exe
+  BuiltinHeaders: QueryDriver
+  Compiler: clang++
 ```
 
 If that still fails, make sure you actually have a C++ STL library installed. Whether from MSVC or libc++.
