@@ -1,6 +1,6 @@
-from pathlib import Path
 import shutil
 from datetime import datetime
+from pathlib import Path
 
 current_year = str(datetime.now().year)
 
@@ -18,7 +18,7 @@ cpp_standard_yr = 20
 
 def head_comment(header: bool, name: str, description: str, author: str, email: str):
     text = f"""/**
- * {name}{f" - Header" if header else ""}
+ * {name}{" - Header" if header else ""}
  * {description}
  *
  * Author: {author} ({email})
@@ -145,6 +145,8 @@ project({project_name})
 
 option({project_name}_BUILD_TESTS "Build tests for {project_name}" ON)
 
+set(FETCHCONTENT_QUIET OFF)
+
 add_library({project_name}
   src/{project_name}.cpp
   src/Core.cpp
@@ -213,7 +215,7 @@ class {main_class_name} {{
     // PIMPL
     struct Core;
     std::unique_ptr<Core> m_core;
-    
+
 }};
 
 }}; // namespace {project_name}
@@ -328,6 +330,10 @@ TEST(s1, a1){{
 
 text_clangdfile = """CompileFlags:
   Add: [-std=c++20]
+  CompilationDatabase: build
+
+Diagnostics:
+  ClangTidy: {}
 """
 
 text_clang_format_file = """Language: Cpp
@@ -357,7 +363,221 @@ AllowShortFunctionsOnASingleLine: true
 AllowShortLambdasOnASingleLine: true
 """
 
-text_clang_format_fish = """
+text_clang_tidy_file = R"""WarningsAsErrors: >
+  -*,
+  bugprone-*,
+  -bugprone-multi-level-implicit-pointer-conversion,
+  -bugprone-empty-catch,
+  -bugprone-unused-return-value,
+  -bugprone-reserved-identifier,
+  -bugprone-switch-missing-default-case,
+  -bugprone-unused-local-non-trivial-variable,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-forward-declararion-namespace,
+  -bugprone-macro-parentheses,
+  -bugprone-narrowing-conversions,
+  -bugprone-branch-clone,
+  -bugprone-assignment-in-if-condition,
+  concurrency-*,
+  -concurrency-mt-unsafe,
+  cppcoreguidelines-*,
+  -cppcoreguidelines-pro-type-const-cast,
+  -cppcoreguidelines-owning-memory,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -cppcoreguidelines-pro-bounds-constant-array-index,
+  -cppcoreguidelines-avoid-const-or-ref-data-members,
+  -cppcoreguidelines-non-private-member-variables-in-classes,
+  -cppcoreguidelines-avoid-goto,
+  -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+  -cppcoreguidelines-avoid-do-while,
+  -cppcoreguidelines-avoid-non-const-global-variables,
+  -cppcoreguidelines-special-member-functions,
+  -cppcoreguidelines-explicit-virtual-functions,
+  -cppcoreguidelines-avoid-c-arrays,
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
+  -cppcoreguidelines-narrowing-conversions,
+  -cppcoreguidelines-pro-type-union-access,
+  -cppcoreguidelines-pro-type-member-init,
+  -cppcoreguidelines-macro-usage,
+  -cppcoreguidelines-macro-to-enum,
+  -cppcoreguidelines-init-variables,
+  -cppcoreguidelines-pro-type-cstyle-cast,
+  -cppcoreguidelines-pro-type-vararg,
+  -cppcoreguidelines-pro-type-reinterpret-cast,
+  -google-global-names-in-headers,
+  -google-readability-casting,
+  google-runtime-operator,
+  misc-*,
+  -misc-use-internal-linkage,
+  -misc-unused-parameters,
+  -misc-no-recursion,
+  -misc-non-private-member-variables-in-classes,
+  -misc-include-cleaner,
+  -misc-use-anonymous-namespace,
+  -misc-const-correctness,
+  modernize-*,
+  -modernize-use-emplace,
+  -modernize-redundant-void-arg,
+  -modernize-use-starts-ends-with,
+  -modernize-use-designated-initializers,
+  -modernize-use-std-numbers,
+  -modernize-return-braced-init-list,
+  -modernize-use-trailing-return-type,
+  -modernize-use-using,
+  -modernize-use-override,
+  -modernize-avoid-c-arrays,
+  -modernize-macro-to-enum,
+  -modernize-loop-convert,
+  -modernize-use-nodiscard,
+  -modernize-pass-by-value,
+  -modernize-use-auto,
+  performance-*,
+  -performance-inefficient-vector-operation,
+  -performance-inefficient-string-concatenation,
+  -performance-enum-size,
+  -performance-move-const-arg,
+  -performance-avoid-endl,
+  -performance-unnecessary-value-param,
+  portability-std-allocator-const,
+  readability-*,
+  -readability-use-std-min-max,
+  -readability-math-missing-parentheses,
+  -readability-simplify-boolean-expr,
+  -readability-static-accessed-through-instance,
+  -readability-use-anyofallof,
+  -readability-enum-initial-value,
+  -readability-redundant-inline-specifier,
+  -readability-function-cognitive-complexity,
+  -readability-function-size,
+  -readability-identifier-length,
+  -readability-magic-numbers,
+  -readability-uppercase-literal-suffix,
+  -readability-braces-around-statements,
+  -readability-redundant-access-specifiers,
+  -readability-else-after-return,
+  -readability-container-data-pointer,
+  -readability-implicit-bool-conversion,
+  -readability-avoid-nested-conditional-operator,
+  -readability-redundant-member-init,
+  -readability-redundant-string-init,
+  -readability-avoid-const-params-in-decls,
+  -readability-named-parameter,
+  -readability-convert-member-functions-to-static,
+  -readability-qualified-auto,
+  -readability-make-member-function-const,
+  -readability-isolate-declaration,
+  -readability-inconsistent-declaration-parameter-name,
+  -clang-diagnostic-error,
+
+HeaderFilterRegex: '.*\.hpp'
+FormatStyle: file
+Checks: >
+  -*,
+  bugprone-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-forward-declararion-namespace,
+  -bugprone-macro-parentheses,
+  -bugprone-narrowing-conversions,
+  -bugprone-branch-clone,
+  -bugprone-assignment-in-if-condition,
+  concurrency-*,
+  -concurrency-mt-unsafe,
+  cppcoreguidelines-*,
+  -cppcoreguidelines-owning-memory,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -cppcoreguidelines-pro-bounds-constant-array-index,
+  -cppcoreguidelines-avoid-const-or-ref-data-members,
+  -cppcoreguidelines-non-private-member-variables-in-classes,
+  -cppcoreguidelines-avoid-goto,
+  -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+  -cppcoreguidelines-avoid-do-while,
+  -cppcoreguidelines-avoid-non-const-global-variables,
+  -cppcoreguidelines-special-member-functions,
+  -cppcoreguidelines-explicit-virtual-functions,
+  -cppcoreguidelines-avoid-c-arrays,
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
+  -cppcoreguidelines-narrowing-conversions,
+  -cppcoreguidelines-pro-type-union-access,
+  -cppcoreguidelines-pro-type-member-init,
+  -cppcoreguidelines-macro-usage,
+  -cppcoreguidelines-macro-to-enum,
+  -cppcoreguidelines-init-variables,
+  -cppcoreguidelines-pro-type-cstyle-cast,
+  -cppcoreguidelines-pro-type-vararg,
+  -cppcoreguidelines-pro-type-reinterpret-cast,
+  google-global-names-in-headers,
+  -google-readability-casting,
+  google-runtime-operator,
+  misc-*,
+  -misc-unused-parameters,
+  -misc-no-recursion,
+  -misc-non-private-member-variables-in-classes,
+  -misc-include-cleaner,
+  -misc-use-anonymous-namespace,
+  -misc-const-correctness,
+  modernize-*,
+  -modernize-return-braced-init-list,
+  -modernize-use-trailing-return-type,
+  -modernize-use-using,
+  -modernize-use-override,
+  -modernize-avoid-c-arrays,
+  -modernize-macro-to-enum,
+  -modernize-loop-convert,
+  -modernize-use-nodiscard,
+  -modernize-pass-by-value,
+  -modernize-use-auto,
+  -modernize-concat-nested-namespaces,
+  performance-*,
+  -performance-avoid-endl,
+  -performance-unnecessary-value-param,
+  portability-std-allocator-const,
+  readability-*,
+  -readability-function-cognitive-complexity,
+  -readability-function-size,
+  -readability-identifier-length,
+  -readability-magic-numbers,
+  -readability-uppercase-literal-suffix,
+  -readability-braces-around-statements,
+  -readability-redundant-access-specifiers,
+  -readability-else-after-return,
+  -readability-container-data-pointer,
+  -readability-implicit-bool-conversion,
+  -readability-avoid-nested-conditional-operator,
+  -readability-redundant-member-init,
+  -readability-redundant-string-init,
+  -readability-avoid-const-params-in-decls,
+  -readability-named-parameter,
+  -readability-convert-member-functions-to-static,
+  -readability-qualified-auto,
+  -readability-make-member-function-const,
+  -readability-isolate-declaration,
+  -readability-inconsistent-declaration-parameter-name,
+  -clang-diagnostic-error,
+
+
+CheckOptions:
+  performance-for-range-copy.WarnOnAllAutoCopies: true
+  performance-inefficient-string-concatenation.StrictMode: true
+  readability-braces-around-statements.ShortStatementLines: 0
+
+  # Naming conventions
+  readability-identifier-naming.ClassCase: CamelCase
+  readability-identifier-naming.ClassIgnoredRegexp: I.*
+
+  readability-identifier-naming.StructCase: CamelCase
+
+  readability-identifier-naming.FunctionCase: lower_case
+  readability-identifier-naming.MethodCase: lower_case
+  readability-identifier-naming.ParameterCase: lower_case
+  readability-identifier-naming.VariableCase: lower_case
+
+  readability-identifier-naming.NamespaceCase: CamelCase
+
+  readability-identifier-naming.EnumCase: CamelCase
+  readability-identifier-naming.EnumConstantCase: UPPER_CASE
+"""
+
+text_clang_format_fish = R"""
 #!/usr/bin/env fish
 
 if test (count $argv) -eq 0
@@ -383,6 +603,144 @@ text_clang_format_this = """
 
 ./clangformat_fish.fish src include include_private tests
 """
+
+text_zed_test_debug = R'''
+import argparse
+import json
+import re
+import subprocess
+from pathlib import Path
+
+
+def get_ctest_tests(build_dir: Path):
+    """
+    Queries all tests from the build directory, which outputs the Suite and Test names as MySuite.MyTest
+    """
+    result = subprocess.run(
+        ["ctest", "-N", "-V", "--test-dir", str(build_dir)],
+        check=True,
+        text=True,
+        capture_output=True,
+    )
+
+    tests = []
+
+    for line in result.stdout.splitlines():
+        # Matches something like
+        # Test #1: MySuite.MyTest
+        match = re.match(r"\s*Test\s+#\d+:\s*(.+)", line)
+        if match:
+            tests.append(match.group(1).strip())
+
+    return tests
+
+
+def create_debug_config(tests, build_dir: Path):
+    """
+    Creates the zed debug config for all tests in the build directory
+    """
+    configs = []
+
+    for test in tests:
+        configs.append(
+            {
+                "label": f"gtest: {test}",
+                "adapter": "CodeLLDB",
+                "request": "launch",
+                "program": "$ZED_WORKTREE_ROOT/" + find_test_binary(build_dir),
+                "args": [f"--gtest_filter={test}"],
+                "cwd": "$ZED_WORKTREE_ROOT",
+            }
+        )
+
+    return configs
+
+
+def find_test_binary(build_dir: Path):
+    """
+    Try to find a gtest executable automatically.
+    Adjust if your project has multiple test binaries.
+    """
+
+    candidates = []
+
+    for path in build_dir.rglob("*"):
+        if (
+            path.is_file()
+            and path.stat().st_mode & 0o111
+            and "test" in path.name.lower()
+        ):
+            candidates.append(path)
+
+    if len(candidates) == 1:
+        return str(candidates[0].relative_to(Path.cwd()))
+
+    if not candidates:
+        raise RuntimeError(
+            "Could not find test executable. Specify it manually with --program."
+        )
+
+    raise RuntimeError(
+        "Multiple possible test executables found:\n"
+        + "\n".join(map(str, candidates))
+        + "\nSpecify one manually with --program."
+    )
+
+
+def main():
+    # Ability to parse a specific test executable. Best only use one.
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--build-dir",
+        default="build",
+        help="CMake build directory",
+    )
+    parser.add_argument(
+        "--program",
+        help="Relative path to test executable from project root",
+    )
+
+    args = parser.parse_args()
+
+    build_dir = Path(args.build_dir).resolve()
+
+    tests = get_ctest_tests(build_dir)
+
+    if not tests:
+        raise RuntimeError("No CTest tests found.")
+
+    if args.program:
+        program = args.program
+        configs = [
+            {
+                "label": f"gtest: {test}",
+                "adapter": "CodeLLDB",
+                "request": "launch",
+                "program": "$ZED_WORKTREE_ROOT/" + program,
+                "args": [f"--gtest_filter={test}"],
+                "cwd": "$ZED_WORKTREE_ROOT",
+            }
+            for test in tests
+        ]
+    else:
+        configs = create_debug_config(tests, build_dir)
+
+    zed_dir = Path(".zed")
+    zed_dir.mkdir(exist_ok=True)
+
+    output = zed_dir / "debug.json"
+    output.write_text(
+        json.dumps(configs, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+    print(f"Generated {len(configs)} debug configurations in {output}")
+
+
+if __name__ == "__main__":
+    main()
+
+'''
 
 
 if __name__ == "__main__":
@@ -501,11 +859,17 @@ if __name__ == "__main__":
     with open(cwd / ".clang-format", "w") as clangformatfile:
         clangformatfile.write(text_clang_format_file)
 
+    with open(cwd / ".clang-tidy", "w") as clangtidyfile:
+        clangtidyfile.write(text_clang_tidy_file)
+
     with open(cwd / "clangformat_fish.fish", "w") as clangformat_fish:
         clangformat_fish.write(text_clang_format_fish)
 
     with open(cwd / "clangformat_this.fish", "w") as clangformat_this:
         clangformat_this.write(text_clang_format_this)
+
+    with open(cwd / "zed_test_debug.py", "w") as zed_test_debug:
+        zed_test_debug.write(text_zed_test_debug)
 
     print(
         "You did it! Now just run `git init`, delete this python file, and you're good to go."
