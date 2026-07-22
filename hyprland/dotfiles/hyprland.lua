@@ -61,7 +61,8 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme \"Material-Black-Carmine-strong\"")
   hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme \"prefer-dark\"")
   hl.exec_cmd("gsettings set org.gnome.desktop.interface icon-theme \"char-white\"")
-  hl.exec_cmd("noctalia --daemon")
+  hl.exec_cmd("noctalia --daemon && noctalia msg notification-show \"Hi!!\" \"(˶˃ ᵕ ˂˶)\"")
+  hl.exec_cmd("hypridle &")
 end)
 
 
@@ -185,10 +186,6 @@ hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 0.5*1.94, bezier
 hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
 
 --hl.animation({ leaf = "glowangle",   enabled = true,  speed = 10.39, bezier = "linear", style = "loop" })
-
---hl.on("window.active", function(w)
---  hl.notification.create({ text = "Window focused: " .. w.title, timeout = 5000, icon = "ok" })
---end)
 
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 -- "Smart gaps" / "No gaps when only"
