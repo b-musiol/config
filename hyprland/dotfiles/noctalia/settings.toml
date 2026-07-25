@@ -1,4 +1,4 @@
-config_version = 1
+config_version = 2
 
 [bar]
 order = [ "default", "bar" ]
@@ -9,27 +9,100 @@ order = [ "default", "bar" ]
     center = [ "audio_visualizer", "spacer", "clock", "spacer", "date" ]
     enabled = true
     end = [ "tray", "volume", "cpu-temp", "gpu-temp" ]
-    font_weight = 900
+    font_weight = 700
     margin_ends = 0
+    radius = 11
     start = [ "launcher", "workspaces" ]
+    widget_spacing = 10
 
         [bar.bar.monitor.DP-1]
         enabled = false
 
     [bar.default]
-    border = "tertiary"
     border_width = 2.0
-    center = [ "active_window", "spacer", "clock", "spacer", "date" ]
-    font_weight = 700
+    center = [ "active_window", "spacer", "clock", "spacer", "date", "spacer", "audio_visualizer" ]
+    end = [
+        "group:g4",
+        "group:g2",
+        "group:g3",
+        "weather",
+        "media",
+        "tray",
+        "notifications",
+        "clipboard",
+        "network",
+        "bluetooth",
+        "volume",
+        "brightness",
+        "battery",
+        "control-center",
+        "session"
+    ]
     margin_ends = 0
+    radius = 11
+    start = [ "launcher", "group:g1", "workspaces" ]
+    widget_spacing = 10
 
         [bar.default.monitor.DP-3]
         enabled = false
+
+        [[bar.default.capsule_group]]
+        enabled = true
+        fill = "surface_variant"
+        id = "g1"
+        members = [ "wallpaper", "wallhaven" ]
+        opacity = 1.0
+        padding = 6.0
+
+        [[bar.default.capsule_group]]
+        enabled = true
+        fill = "surface_variant"
+        id = "g2"
+        members = [ "cpu-usage", "gpu-usage", "gpu-vram", "ram_usage" ]
+        opacity = 1.0
+        padding = 6.0
+
+        [[bar.default.capsule_group]]
+        enabled = true
+        fill = "surface_variant"
+        id = "g3"
+        members = [ "cpu-temp", "gpu-temp" ]
+        opacity = 1.0
+        padding = 6.0
+
+        [[bar.default.capsule_group]]
+        enabled = true
+        fill = "surface_variant"
+        id = "g4"
+        members = [ "network_tx", "network_rx" ]
+        opacity = 1.0
+        padding = 6.0
+
+[calendar]
+enabled = true
 
 [control_center]
 sidebar = "full"
 sidebar_section = "full"
 width = 1000
+
+    [[control_center.shortcuts]]
+    type = "bluetooth"
+
+    [[control_center.shortcuts]]
+    type = "caffeine"
+
+    [[control_center.shortcuts]]
+    type = "nightlight"
+
+    [[control_center.shortcuts]]
+    type = "notification"
+
+    [[control_center.shortcuts]]
+    type = "power_profile"
+
+    [[control_center.shortcuts]]
+    type = "system"
 
 [desktop_widgets]
 schema_version = 2
@@ -43,13 +116,12 @@ widget_order = []
     [desktop_widgets.widget]
 
 [location]
-address = ""
 auto_locate = true
 
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
-widget_order = [ "lockscreen-login-box@DP-3", "lockscreen-login-box@DP-1" ]
+widget_order = [ "lockscreen-login-box@WAYLAND-1", "lockscreen-login-box@DP-3", "lockscreen-login-box@DP-1" ]
 
     [lockscreen_widgets.grid]
     cell_size = 16
@@ -69,6 +141,7 @@ widget_order = [ "lockscreen-login-box@DP-3", "lockscreen-login-box@DP-1" ]
         background_color = "surface_variant"
         background_opacity = 0.88
         background_radius = 12.0
+        center_password_text = false
         input_opacity = 1.0
         input_radius = 6.0
         show_caps_lock = true
@@ -89,6 +162,28 @@ widget_order = [ "lockscreen-login-box@DP-3", "lockscreen-login-box@DP-1" ]
         background_color = "surface_variant"
         background_opacity = 0.88
         background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_password_hint = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@WAYLAND-1"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 320.0
+    cy = 241.0
+    output = "WAYLAND-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@WAYLAND-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
         input_opacity = 1.0
         input_radius = 6.0
         show_caps_lock = true
@@ -99,10 +194,37 @@ widget_order = [ "lockscreen-login-box@DP-3", "lockscreen-login-box@DP-1" ]
 [nightlight]
 temperature_night = 5500
 
+[notification]
+position = "top_center"
+
+[osd.kinds]
+media = false
+
+[plugin_settings."blacku/keybind-cheatsheet"]
+hyprland_config_path = "~/.config/hypr/hyprland.lua"
+niri_config_path = "~/.config/niri/config.kdl"
+
+[plugin_settings."noctalia/wallhaven"]
+api_key = "wUx79v7UcClMt5wmqwAyZUkJwRElzWsg"
+browser_open_near_click = true
+browser_placement = "floating"
+
 [plugins]
-enabled = [ "noctalia/kaomoji" ]
+enabled = [ "noctalia/kaomoji", "noctalia/wallhaven" ]
+
+    [[plugins.source]]
+    kind = "git"
+    location = "https://github.com/noctalia-dev/official-plugins"
+    name = "official"
+
+    [[plugins.source]]
+    kind = "git"
+    location = "https://github.com/noctalia-dev/community-plugins"
+    name = "community"
 
 [shell]
+external_ip_enabled = true
+polkit_agent = true
 screen_time_enabled = true
 
     [shell.panel]
@@ -112,6 +234,10 @@ screen_time_enabled = true
     open_near_click_wallpaper = true
     polkit_placement = "attached"
 
+    [shell.screen_corners]
+    enabled = true
+    size = 20
+
 [system.monitor]
 gpu_poll_seconds = 5
 
@@ -119,45 +245,86 @@ gpu_poll_seconds = 5
 builtin = "Tokyo-Night"
 community_palette = "Occult Umbral"
 custom_palette = "Carmine"
+mode = "auto"
 source = "custom"
-wallpaper_scheme = "m3-monochrome"
+wallpaper_scheme = "m3-content"
 
 [wallpaper]
-directory = "/home/musiba/Pictures/wallpapers"
+directory = "/home/musiba/Pictures/wallpapers/rotation"
+transition_on_startup = true
 
-    [wallpaper.default]
-    path = "/home/musiba/Pictures/wallpapers/Night monochrome.jpg"
-
-    [wallpaper.last]
-    path = "/home/musiba/Pictures/wallpapers/Night monochrome.jpg"
-
-    [wallpaper.monitors.DP-1]
-    path = "/home/musiba/Pictures/wallpapers/Night monochrome.jpg"
-
-    [wallpaper.monitors.DP-3]
-    path = "/home/musiba/Pictures/wallpapers/Night monochrome.jpg"
+    [wallpaper.automation]
+    enabled = true
+    interval_seconds = 600
 
 [widget.active_window]
 max_length = 700
 title_scroll = "on_hover"
+
+[widget.audio_visualizer]
+bands = 32
+centered = false
+color_2 = "secondary"
+mirrored = false
+width = 128
 
 [widget.clock]
 anchor = true
 capsule = true
 format = "{:%H:%M:%S}"
 
+[widget.cpu]
+stat = "net_rx"
+
 [widget.cpu-temp]
 display = "graph"
 stat = "cpu_temp"
 type = "sysmon"
+
+[widget.cpu-usage]
+display = "graph"
+stat = "cpu_usage"
+type = "sysmon"
+
+[widget.date]
+format = "{:%a %d.%m.%Y}"
 
 [widget.gpu-temp]
 display = "graph"
 stat = "gpu_temp"
 type = "sysmon"
 
+[widget.gpu-usage]
+display = "graph"
+stat = "gpu_usage"
+type = "sysmon"
+
+[widget.gpu-vram]
+display = "graph"
+stat = "gpu_vram"
+type = "sysmon"
+
 [widget.media]
 album_art_only = true
 
+[widget.network_rx]
+display = "graph"
+type = "sysmon"
+
+[widget.network_tx]
+display = "graph"
+type = "sysmon"
+
+[widget.ram_usage]
+display = "graph"
+stat = "ram_used"
+type = "sysmon"
+
+[widget.sysmon]
+stat = "ram_used"
+
 [widget.temp]
 display = "graph"
+
+[widget.wallhaven]
+type = "noctalia/wallhaven:wallhaven"
