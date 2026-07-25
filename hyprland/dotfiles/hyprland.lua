@@ -41,7 +41,7 @@ hl.monitor({
 ---------------------
 
 -- Set programs that you use
-local terminal    = "kitty"
+local terminal    = "alacritty"
 local fileManager = terminal .." -e mc"
 local browser     = "firefox"
 local menu        = "hyprlauncher"
