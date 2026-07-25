@@ -110,8 +110,8 @@ hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
-        gaps_in  = 1,
-        gaps_out = 1,
+        gaps_in  = 20,
+        gaps_out = 20,
         float_gaps = -1,
 
         border_size = 2,
