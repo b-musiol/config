@@ -307,10 +307,14 @@ hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("noctalia msg session lock"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.exec_cmd(terminal .. " -e btop"))
+hl.bind(mainMod .. " + CTRL + F", hl.dsp.window.fullscreen_state({internal = 2, client = 0, action = "toggle"}))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen_state({internal = 0, client = 2, action = "toggle"}))
+hl.bind(mainMod .. " + ALT + F", hl.dsp.window.fullscreen_state({internal = 1, client = 2, action = "toggle"}))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind(mainMod .. " + CTRL + W", hl.dsp.exec_cmd("noctalia msg panel-toggle noctalia/wallhaven:browser"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("noctalia msg panel-toggle wallpaper"))
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("noctalia msg bar-toggle"))
 
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({action = "toggle"}))
 
