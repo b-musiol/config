@@ -38,7 +38,7 @@ function fish_prompt
     end
 
     # Render prompt
-    echo -n " "
+    echo -n (set_color normal)(whoami)(set_color a28384)"@"(set_color 34a089)(hostname -s)" "
     echo -n $st_part
     echo -n (set_color 960018)$d
     echo -n (set_color 34a089)$pchar' '(set_color normal)
