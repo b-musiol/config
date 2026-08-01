@@ -20,7 +20,7 @@ function fish_prompt
     set -l st $status
     set -l st_part ""
     if test $st -ne 0
-        set st_part (set_color red)"[$st]"(set_color normal)' '
+        set st_part (set_color 0080ff)"[$st]"(set_color normal)' '
     end
 
     # Current directory
