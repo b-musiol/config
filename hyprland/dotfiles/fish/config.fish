@@ -38,6 +38,9 @@ function fish_prompt
     end
 
     # Render prompt
+    if set -q VIRTUAL_ENV
+        echo -n -s (set_color 960018) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
+    end
     echo -n (set_color normal)(whoami)(set_color a28384)"@"(set_color 34a089)(hostname -s)" "
     echo -n $st_part
     echo -n (set_color 960018)$d
