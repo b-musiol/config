@@ -438,3 +438,6 @@ end
 for i = 9, 10 do
     hl.workspace_rule({workspace = i, monitor=wide_monitor, layout="dwindle", persistent=true})
 end
+for i = 11, 12 do
+    hl.workspace_rule({workspace = i, monitor=wide_monitor, layout="scrolling", persistent=true})
+end
