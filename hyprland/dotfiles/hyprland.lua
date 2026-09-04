@@ -72,8 +72,8 @@ end)
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
-hl.env("XCURSOR_SIZE", "64")
-hl.env("XCURSOR_THEME", "Adwaita")
+hl.env("XCURSOR_SIZE", "80")
+hl.env("XCURSOR_THEME", "Nordzy-hyprcursors-dash")
 hl.env("HYPRCURSOR_SIZE", "80")
 hl.env("HYPRCURSOR_THEME", "Nordzy-hyprcursors-dash")
 hl.env("HYPRCURSOR_THEME_DIRS", "~/.local/share/icons/")
@@ -81,7 +81,8 @@ hl.env("QT_QPA_PLATFORM", "wayland")
 hl.env("PROTON_ENABLE_WAYLAND", "1")
 --hl.env("QT_QPA_PLATFORMTHEME", "hyprqt6engine")
 hl.env("EDITOR", "nano")
-hl.env("Search_Engine", "https://www.google.com/search?q={}")
+hl.env("Search_Engine", "https://duckduckgo.com/?q={}")
+hl.env("MOZ_ENABLE_WAYLAND", "1")
 
 
 -----------------------
