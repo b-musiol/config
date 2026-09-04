@@ -38,6 +38,7 @@ order = [ "default", "bar" ]
         "volume",
         "brightness",
         "battery",
+        "bar",
         "control-center",
         "session"
     ]
@@ -235,7 +236,7 @@ browser_open_near_click = true
 browser_placement = "floating"
 
 [plugins]
-enabled = [ "noctalia/kaomoji", "noctalia/wallhaven" ]
+enabled = [ "noctalia/kaomoji", "noctalia/wallhaven", "noctalia/timer" ]
 
     [[plugins.source]]
     kind = "git"
@@ -320,7 +321,7 @@ source = "custom"
 wallpaper_scheme = "m3-content"
 
 [wallpaper]
-directory = "/home/musiba/Pictures/wallpapers/rotation"
+directory = "/home/musiba/Pictures/wallpapers/rotation/static"
 transition_on_startup = true
 
     [wallpaper.automation]
@@ -337,6 +338,9 @@ centered = false
 color_2 = "secondary"
 mirrored = false
 width = 128
+
+[widget.bar]
+type = "noctalia/timer:bar"
 
 [widget.clock]
 anchor = true
