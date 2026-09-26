@@ -28,12 +28,25 @@ Copy the following files in the following folders (create folders if they do not
 
 ```
 hyprland/dotfiles/hyprland.lua -> ~/.config/hypr/hyprland.lua
+hyprland/dotfiles/btop/btop.conf -> ~/.config/btop/btop.conf
+hyprland/dotfiles/btop/btop_dark.conf -> ~/.config/btop/btop_dark.conf
+hyprland/dotfiles/btop/btop_light.conf -> ~/.config/btop/btop_light.conf
 hyprland/dotfiles/alacritty/alacritty.toml -> ~/.config/alacritty/alacritty.toml
-hyprland/dotfiles/fastfetch/config.jsonc -> ~/.config/fastfetch/config.jsonc
+hyprland/dotfiles/alacritty/alacritty_dark.toml -> ~/.config/alacritty/alacritty_dark.toml
+hyprland/dotfiles/alacritty/alacritty_light.toml -> ~/.config/alacritty/alacritty_light.toml
 hyprland/dotfiles/fish/config.fish -> ~/.config/fish/config.fish
 hyprland/dotfiles/noctalia/settings.toml -> ~/.config/noctalia/settings.toml
 hyprland/dotfiles/noctalia/palettes/Carmine.json -> ~/.config/noctalia/palettes/Carmine.json
+hyprland/dotfiles/noctalia/noctalia_theme_switch_hook.fish -> ~/.config/noctalia/noctalia_theme_switch_hook.fish
 hyprland/gtk-themes/Material-Black-Carmine-strong/ -> ~/.themes/Material-Black-Carmine-strong
+```
+
+The _dark and _light files are for the noctalia theme switcher script.
+
+Optionally:
+
+```
+hyprland/dotfiles/fastfetch/config.jsonc -> ~/.config/fastfetch/config.jsonc
 ```
 
 ## Adjusting hyprland.lua

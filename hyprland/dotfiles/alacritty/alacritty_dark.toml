@@ -7,7 +7,7 @@ dynamic_padding = true
 decorations = "full"
 title = "Alacritty@CachyOS"
 opacity = 0.99
-decorations_theme_variant = "Light"
+decorations_theme_variant = "Dark"
 
 [window.dimensions]
 columns = 100
@@ -25,8 +25,8 @@ multiplier = 3
 draw_bold_text_with_bright_colors = true
 
 [colors.primary]
-foreground = "0x000000"
-background = "0xFFFFFF"
+background = "0x000000"
+foreground = "0xD8DEE9"
 
 [colors.normal]
 black   = "0x3B4252"

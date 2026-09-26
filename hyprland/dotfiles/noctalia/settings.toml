@@ -224,6 +224,9 @@ widget_order = [ "lockscreen-login-box@WAYLAND-1", "lockscreen-login-box@DP-3", 
 [nightlight]
 temperature_night = 5500
 
+[hooks]
+theme_mode_changed = "~/.config/noctalia/noctalia_theme_switch_hook.fish"
+
 [notification]
 position = "top_center"
 
